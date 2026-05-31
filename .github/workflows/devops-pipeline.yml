@@ -1,0 +1,19 @@
+name: Hello DevOps Pipeline
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. ดึงโค้ดจาก Repository ลงมา
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # 2. สั่ง Docker ให้ Build Image เพื่อทดสอบ
+    - name: Build Docker Image
+      run: |
+        docker build -t hello-devops:latest .
+        echo "Docker Image Built Successfully!"
